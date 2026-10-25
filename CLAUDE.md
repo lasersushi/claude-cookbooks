@@ -61,17 +61,19 @@ style: lint/format
 
 2. **Dependencies:** Use `uv add <package>` or `uv add --dev <package>`. Never edit pyproject.toml directly.
 
-3. **Models:** Use current Claude models. Check docs.anthropic.com for latest versions.
-   - Sonnet: `claude-sonnet-4-6`
+3. **Models:** Use current Claude models. Check platform.claude.com/docs for latest versions.
+   - Opus: `claude-opus-5-5`
+   - Sonnet: `claude-sonnet-5-5`
+   - Fable: `claude-fable-5-1`
    - Haiku: `claude-haiku-4-5`
-   - Opus: `claude-opus-4-6`
-   - **Never use dated model IDs** (e.g., `claude-sonnet-4-6-20250514`). Always use the non-dated alias.
+   - **Never use dated model IDs** (e.g., `claude-sonnet-4-5-20250929`). Always use the non-dated alias.
    - **Bedrock model IDs** follow a different format. Use the base Bedrock model ID from the docs:
-     - Opus 4.6: `anthropic.claude-opus-4-6-v1`
-     - Sonnet 4.5: `anthropic.claude-sonnet-4-5-20250929-v1:0`
-     - Haiku 4.5: `anthropic.claude-haiku-4-5-20251001-v1:0`
-     - Prepend `global.` for global endpoints (recommended): `global.anthropic.claude-opus-4-6-v1`
-     - Note: Bedrock models before Opus 4.6 require dated IDs in their Bedrock model ID.
+     - Opus 5.5: `anthropic.claude-opus-5-5`
+     - Sonnet 5.5: `anthropic.claude-sonnet-5-5`
+     - Fable 5.1: `anthropic.claude-fable-5-1`
+     - Haiku 4.5: `anthropic.claude-haiku-4-5`
+     - Prepend `global.` for global endpoints (recommended): `global.anthropic.claude-opus-5-5`
+     - Note: these are the IDs for Bedrock's Messages-API endpoint. Integrations that only go through InvokeModel (for example `boto3` `invoke_model`, or fine-tuning jobs) use the dated form instead, e.g. `anthropic.claude-haiku-4-5-20251001-v1:0`.
 
 4. **Notebooks:**
    - Keep outputs in notebooks (intentional for demonstration)
@@ -92,6 +94,7 @@ These commands are available in Claude Code and CI:
 
 ```
 capabilities/      # Core Claude capabilities (RAG, classification, etc.)
+evals/             # Model evaluation patterns and benchmarks
 skills/            # Advanced skill-based notebooks
 tool_use/          # Tool use and integration patterns
 multimodal/        # Vision and image processing
